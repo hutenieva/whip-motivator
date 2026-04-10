@@ -12,14 +12,31 @@ A fun Chrome extension that adds a physics-based whip cursor to Google Meet call
 
 ## Install
 
-### From Chrome Web Store
-Coming soon.
+### Option 1: Chrome Web Store
 
-### Manual install
-1. Clone this repo
-2. Open `chrome://extensions` in Chrome
-3. Enable **Developer mode** (top right)
-4. Click **Load unpacked** and select the repo folder
+[Install from Chrome Web Store](https://chromewebstore.google.com/detail/whip-motivator)
+
+### Option 2: Install from source
+
+#### Manual
+
+1. Clone the repo:
+   ```
+   git clone https://github.com/hutenieva/whip-motivator.git
+   ```
+2. Open Chrome and go to `chrome://extensions`
+3. Enable **Developer mode** (toggle in the top right)
+4. Click **Load unpacked**
+5. Select the cloned `whip-motivator` folder
+6. The extension icon will appear in your toolbar
+
+#### Using Claude Code
+
+If you have [Claude Code](https://claude.com/claude-code) installed, just paste this:
+
+```
+Clone https://github.com/hutenieva/whip-motivator.git and load it as an unpacked Chrome extension. Clone the repo to ~/Projects/whip-motivator, then tell me to open chrome://extensions, enable Developer mode, click "Load unpacked" and select the ~/Projects/whip-motivator folder.
+```
 
 ## Usage
 
@@ -29,3 +46,7 @@ Coming soon.
 4. Click anywhere to crack the whip at that spot
 5. Switch hit modes in the popup for different effects
 6. Press `Alt+W` to quickly toggle off when needed
+
+## Privacy
+
+No data collected. Everything runs locally. [Privacy Policy](PRIVACY.md)
