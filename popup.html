@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 260px;
+      padding: 20px;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #e0e0e0;
+      background: #2C2522;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.2px;
+    }
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #4A4240;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      left: 3px;
+      top: 3px;
+      background: #8A8280;
+      border-radius: 50%;
+      transition: transform 0.25s, background 0.25s;
+    }
+    input:checked + .slider {
+      background: #4A4240;
+    }
+    input:checked + .slider::before {
+      transform: translateX(22px);
+      background: #7B9BC7;
+    }
+    .divider {
+      height: 1px;
+      background: #3E3735;
+      margin-bottom: 16px;
+    }
+    .section-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: #c0b8b4;
+      margin-bottom: 14px;
+    }
+    .modes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mode-btn {
+      background: #383230;
+      border: 2px solid #4A4543;
+      border-radius: 8px;
+      padding: 16px 8px 14px;
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .mode-btn:hover {
+      background: #403835;
+      border-color: #5A5553;
+    }
+    .mode-btn.active {
+      border-color: #7B9BC7;
+      background: #3D4A5C;
+    }
+    .mode-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9A9290;
+    }
+    .mode-btn.active .mode-name {
+      color: #C8D8EC;
+    }
+    .modes.disabled .mode-btn {
+      opacity: 0.35;
+      pointer-events: none;
+      cursor: default;
+    }
+    .modes.disabled .mode-btn.active {
+      border-color: #4A4543;
+      background: #383230;
+    }
+    .modes.disabled .mode-btn.active .mode-name {
+      color: #9A9290;
+    }
+    .section-label.disabled {
+      opacity: 0.35;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>Whip Motivator</h2>
+    <label class="toggle">
+      <input type="checkbox" id="whipToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+  <div class="divider"></div>
+  <div class="section-label">Hit Mode</div>
+  <div class="modes">
+    <div class="mode-btn" data-mode="neutral">
+      <span class="mode-name">Neutral</span>
+    </div>
+    <div class="mode-btn" data-mode="loving">
+      <span class="mode-name">Loving</span>
+    </div>
+    <div class="mode-btn" data-mode="angry">
+      <span class="mode-name">Angry</span>
+    </div>
+    <div class="mode-btn" data-mode="mixed">
+      <span class="mode-name">Mixed</span>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
