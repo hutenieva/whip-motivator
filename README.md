@@ -8,7 +8,8 @@ A fun Chrome extension that adds a physics-based whip cursor to Google Meet call
 - Click anywhere to strike that exact spot with a crack animation and sound
 - 4 hit modes: Neutral (sparks), Loving, Angry, Mixed (emojis)
 - Toggle on/off with `Alt+W` or the toolbar button
-- Works only on meet.google.com
+- Works on any tab — whip follows you during screen sharing
+- Sound on/off toggle in the popup
 
 ## Install
 
@@ -16,7 +17,16 @@ A fun Chrome extension that adds a physics-based whip cursor to Google Meet call
 
 [Install from Chrome Web Store](https://chromewebstore.google.com/detail/whip-motivator)
 
-### Option 2: Install from source
+### Option 2: Download ZIP (no GitHub account needed)
+
+1. Download the latest ZIP from [Releases](https://github.com/hutenieva/whip-motivator/releases/latest)
+2. Unzip the folder
+3. Open Chrome and go to `chrome://extensions`
+4. Enable **Developer mode** (toggle in the top right)
+5. Click **Load unpacked** → select the unzipped folder
+6. The extension icon will appear in your toolbar
+
+### Option 3: Install from source
 
 #### Manual
 
