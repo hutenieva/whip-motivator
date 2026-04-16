@@ -1,13 +1,16 @@
 const toggle = document.getElementById('whipToggle');
+const soundToggle = document.getElementById('soundToggle');
 const modesGrid = document.querySelector('.modes');
 const sectionLabel = document.querySelector('.section-label');
 const modeBtns = document.querySelectorAll('.mode-btn');
 
 // Load saved state
-chrome.storage.local.get(['whipEnabled', 'whipMode'], (data) => {
+chrome.storage.local.get(['whipEnabled', 'whipMode', 'soundEnabled'], (data) => {
   const enabled = data.whipEnabled || false;
   const mode = data.whipMode || 'neutral';
+  const sound = data.soundEnabled !== undefined ? data.soundEnabled : true;
   toggle.checked = enabled;
+  soundToggle.checked = sound;
   setActiveMode(mode);
   updateDisabledState(enabled);
 });
@@ -17,6 +20,12 @@ toggle.addEventListener('change', () => {
   chrome.storage.local.set({ whipEnabled: enabled });
   updateDisabledState(enabled);
   sendToTab({ action: 'toggle', enabled });
+});
+
+soundToggle.addEventListener('change', () => {
+  const enabled = soundToggle.checked;
+  chrome.storage.local.set({ soundEnabled: enabled });
+  sendToTab({ action: 'setSound', enabled });
 });
 
 modeBtns.forEach((btn) => {
@@ -41,7 +50,7 @@ function updateDisabledState(enabled) {
 
 function sendToTab(msg) {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    if (tabs[0]?.url?.includes('meet.google.com')) {
+    if (tabs[0]?.id) {
       chrome.tabs.sendMessage(tabs[0].id, msg);
     }
   });

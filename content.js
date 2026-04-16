@@ -5,6 +5,7 @@ let mouseX = 0;
 let mouseY = 0;
 let animationId = null;
 let currentMode = 'neutral'; // neutral, loving, angry, mixed
+let soundEnabled = true;
 
 // --- Emoji sets ---
 const EMOJIS_LOVING = ['❤️', '🥰', '💋', '🧚', '✨', '💖'];
@@ -280,7 +281,7 @@ function applyStrikeForces() {
       points[TOTAL_SEGS - 1].y = strikeTargetY;
       strikePhase = 3;
       strikeTimer = 0;
-      playCrackSound();
+      if (soundEnabled) playCrackSound();
       spawnEmojiParticles(strikeTargetX, strikeTargetY);
     }
   }
@@ -636,6 +637,10 @@ chrome.runtime.onMessage.addListener((msg) => {
     currentMode = msg.mode;
     chrome.storage.local.set({ whipMode: msg.mode });
   }
+  if (msg.action === 'setSound') {
+    soundEnabled = msg.enabled;
+    chrome.storage.local.set({ soundEnabled: msg.enabled });
+  }
 });
 
 document.addEventListener('keydown', (e) => {
@@ -645,7 +650,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-chrome.storage.local.get(['whipEnabled', 'whipMode'], (data) => {
+chrome.storage.local.get(['whipEnabled', 'whipMode', 'soundEnabled'], (data) => {
   if (data.whipMode) currentMode = data.whipMode;
+  if (data.soundEnabled !== undefined) soundEnabled = data.soundEnabled;
   if (data.whipEnabled) setWhipMode(true);
 });
